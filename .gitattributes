@@ -6,7 +6,6 @@
 *.md diff=markdown
 *.php diff=php
 *.js linguist-detectable=true
-
 *.cs linguist-language=C#
 
 /.github export-ignore
