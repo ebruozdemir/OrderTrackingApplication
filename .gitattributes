@@ -1,6 +1,6 @@
 *.cs linguist-language=C#
-*.css linguist-vendored
-*.less linguist-vendored
-*.js linguist-vendored
-*.scss linguist-vendored
-*.html linguist-vendored
+*.css linguist-detectable=false linguist-vendored
+*.less linguist-detectable=false linguist-vendored
+*.js linguist-detectable=false linguist-vendored
+*.scss linguist-detectable=false linguist-vendored
+*.html linguist-detectable=false linguist-vendored
