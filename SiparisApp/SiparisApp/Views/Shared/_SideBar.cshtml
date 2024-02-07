@@ -1,0 +1,60 @@
+﻿
+@using SiparisApp.CustomModels
+@functions {
+
+
+   
+}
+
+<div class="navbar-default sidebar" role="navigation" style="overflow: visible;">
+    <div class="slimScrollDiv" style="position: relative; overflow: visible; width: auto; height: 100%;">
+        <div class="sidebar-nav navbar-collapse slimscrollsidebar" style="overflow: visible hidden; width: auto; height: 100%;">
+            <ul class="nav" id="side-menu">
+                <li class="sidebar-search hidden-sm hidden-md hidden-lg">
+                    <!-- input-group -->
+                    <div class="input-group custom-search-form">
+                        <input type="text" class="form-control" placeholder="Search...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button"> <i class="fa fa-search"></i> </button>
+                        </span>
+                    </div>
+                    <!-- /input-group -->
+                </li>
+                <li class="nav-small-cap m-t-10">--- Ana Menü</li>
+
+                @if (HttpContext.Current.User.Identity.IsAuthenticated)
+                {
+                    <li>
+                        <a href="index.html" class="waves-effect"><i class="linea-icon linea-basic fa-fw" data-icon="}"></i> <span class="hide-menu"> Siparişler <span class="fa arrow"></span> <span class="label label-rouded label-danger pull-right">@RecordData.SiparisCount()</span></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="@Url.Action("Save", "Home")">Yeni Ekle</a> </li>
+                            <li><a href="@Url.Action("Index", "Home")">Tüm Kayıtlar</a> </li>
+                        </ul>
+                    </li>
+
+                    if (HttpContext.Current.User.IsInRole("Admin"))
+                    {
+                        <li>
+                            <a href="#" class="waves-effect"><i data-icon="/" class="icon-user"></i> <span class="hide-menu">    Kullanıcılar<span class="fa arrow"></span> <span class="label label-rouded label-purple pull-right">@RecordData.UserCount()</span> </span></a>
+                            <ul class="nav nav-second-level collapse">
+                                <li><a href="@Url.Action("Save", "User")">Yeni Ekle</a> </li>
+                                <li><a href="@Url.Action("Index", "User")">Tüm Kayıtlar</a> </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="forms.html" class="waves-effect"><i data-icon="" class="linea-icon linea-basic fa-fw"  ></i> <span class="hide-menu"> Müşteriler<span class="fa arrow"></span> <span class="label label-rouded label-custom pull-right">@RecordData.CustomerCount()</span> </span></a>
+                            <ul class="nav nav-second-level collapse">
+                                <li><a href="@Url.Action("Save", "Customer")">Yeni Ekle</a> </li>
+                                <li><a href="@Url.Action("Index", "Customer")">Tüm Kayıtlar</a> </li>
+                            </ul>
+                        </li>
+                    }
+                }
+
+            </ul>
+        </div>
+        <div class="slimScrollBar" style="background: rgb(220, 220, 220); width: 0px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 226.039px;"></div>
+        <div class="slimScrollRail" style="width: 0px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
+    </div>
+</div>

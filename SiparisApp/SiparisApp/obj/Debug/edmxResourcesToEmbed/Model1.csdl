@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Database1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CARI">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CARI_ADI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AKTIF" Type="Int32" />
+  </EntityType>
+  <EntityType Name="KULLANICI">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KULLANICI_ADI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SIFRE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SOYAD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BIRIM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AKTIF" Type="Int32" />
+  </EntityType>
+  <EntityType Name="ROL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ROLE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SIPARIS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PROJE_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SERI_NO" Type="Int32" />
+    <Property Name="GUC" Type="Int32" />
+    <Property Name="CARI_ID" Type="Int32" />
+    <Property Name="SIPARIS_ADETI" Type="Int32" />
+    <Property Name="SIPARIS_TARIHI" Type="DateTime" Precision="3" />
+    <Property Name="KULLANICI_ID" Type="Int32" />
+    <Property Name="AKTIF" Type="Int32" />
+  </EntityType>
+  <EntityContainer Name="Database1Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CARI" EntityType="Self.CARI" />
+    <EntitySet Name="KULLANICI" EntityType="Self.KULLANICI" />
+    <EntitySet Name="ROL" EntityType="Self.ROL" />
+    <EntitySet Name="SIPARIS" EntityType="Self.SIPARIS" />
+  </EntityContainer>
+</Schema>

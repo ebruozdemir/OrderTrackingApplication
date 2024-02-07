@@ -1,0 +1,246 @@
+﻿
+@using SiparisApp.CustomModels
+@model SiparisViewModel.AraModel
+@{
+    ViewBag.Title = "Index";
+}
+
+@section Navbar{
+    @{
+        Html.RenderPartial("_Navbar");
+    }
+
+}
+
+@section Sidebar{
+    @{
+        Html.RenderPartial("_SideBar");
+    }
+
+}
+
+@section Footer{
+    @{
+        Html.RenderPartial("_Footer");
+    }
+
+}
+
+<div class="container-fluid">
+
+    @using (Ajax.BeginForm("Index", "Home", FormMethod.Post, new AjaxOptions { OnSuccess = "AramaFiltrele" }))
+    {
+
+
+
+        <div class="row bg-title">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                <h4 class="page-title">Sipariş Listesi</h4>
+            </div>
+            <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                @*<div id="alerttopright" class="myadmin-alert myadmin-alert-img alert-info myadmin-alert-top-right" style="display:@(TempData["Mesaj"] == null ? "none" : "block");">
+                        <img src="~/Content/Images/images/icons/tik.PNG" class="img" alt="img" />  <a href="#" class="closed">×</a>
+                        <h4>Mesajınız Var!</h4>
+                        @if (TempData["Mesaj"] != null)
+                        {
+                            <div>@TempData["Mesaj"]</div>
+                        }
+                    </div>*@
+
+                 <div id="ajax-popup" class="modal fade" tabindex="-1" role="dialog">
+                     <div class="modal-dialog model-sm" role="document">
+                         <div class="modal-content">
+                             <div class="model-body">
+                                 <img src="~/Content/Images/loading-loading-gif.gif" class="img-responsive" />
+                                 <p class="text-center">Lütfen bekleyiniz..</p>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+
+
+                <div class="jq-toast-wrap top-right">
+                    <div class="jq-toast-single jq-has-icon jq-icon-success" style="text-align: left; display:@(TempData["Mesaj"] == null ? "none" : "block");">
+                        <span class="jq-toast-loader jq-toast-loaded" style="-webkit-transition: width 3.1s ease-in;-o-transition: width 3.1s ease-in;transition: width 3.1s ease-in;background-color: #ff6849;">
+                        </span><span class="close-jq-toast-single">
+                            ×
+                        </span><h2 class="jq-toast-heading">Mesajınız Var!</h2>@TempData["Mesaj"]
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="white-box">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label style="font-size: small; font-weight: bold;">PROJE NO</label><br />
+                            @Html.EditorFor(x => x.PROJE_NO, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <div class="col-md-3">
+                            <label style="font-size: small; font-weight: bold;">SERİ NO</label><br />
+                            @Html.EditorFor(x => x.SERI_NO, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <div class="col-md-3">
+                            <label style="font-size: small; font-weight: bold;">GÜÇ</label><br />
+                            @Html.EditorFor(x => x.GUC, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <div class="col-md-3">
+                            <label style="font-size: small; font-weight: bold;">CARİ ADI</label><br />
+                            @Html.DropDownListFor(x => x.CARI_ID, Model.CARI_LIST, new { @class = "js-example-basic-single form-control" })
+                        </div>
+                    </div>
+
+                    <br />
+
+                    <div class="row">
+                        <div class="col-md-12" style="text-align:right">
+                            <a class="fcbtn btn btn-success btn-outline btn-1b" onclick="ExceleAktar()"><i class="fa fa-file-excel-o">  Excel</i> </a>
+                            <button type="submit" class="fcbtn btn btn-info btn-outline btn-1b" id="btnListele"><i class="fa fa-filter"> Listele</i></button>
+                            <a class="fcbtn btn btn-primary btn-outline btn-1b" href="@Url.Action("Save", "Home")/0"><i class="fa fa-plus"> Yeni</i></a>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="white-box">
+                <div id="div-liste">
+                    @Html.Partial("~/Views/Home/_List.cshtml", Model)
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section Scripts{
+
+    <script>
+
+        function AramaFiltrele(Sonuclar) {
+            $("#div-liste").html(Sonuclar);
+        }
+
+        @*function Sil(id) {
+                if (confirm('Seçilen kaydı silmek istiyor musun?')) {
+
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("Delete", "Home")/' + id,
+                    success: function (data) {
+                        if (data.success) {
+
+                            MesajBasarili(data.message);
+
+                            window.setInterval(function () {
+                                location.reload();
+                            }, 1000);
+
+
+                        }
+                    }
+                });
+
+            }
+        }*@
+
+        function Sil(id) {
+            swal({
+                title: "Emin misiniz?",
+                text: "Seçilen kaydı sildikten sonra geri getiremezsiniz",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Evet",
+                cancelButtonText: "Hayır",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    //swal("Uyarı!", "Silindi.", "success");
+
+                    $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("Delete", "Home")/' + id,
+                    success: function (data) {
+                        if (data.success) {
+
+                            swal("Uyarı!", data.message, "success");
+
+                            //MesajBasarili(data.message);
+
+                            window.setInterval(function () {
+                                location.reload();
+                            }, 2000);
+
+
+                        }
+                    }
+                    });
+
+                } else {
+                    swal("Uyarı", "İptal edildi.", "error");
+                }
+            });
+        }
+
+        function ExceleAktar() {
+            $.ajax({
+                type: 'POST',
+                async: true,
+                cache: true,
+                url: '/Home/ExceleAktar',
+                datatype: "json",
+                data: {
+                    'PROJE_NO': $("#PROJE_NO").val(),
+                    'SERI_NO': $("#SERI_NO").val(),
+                    'GUC': $("#GUC").val(),
+                    'CARI_ID': $("#CARI_ID").val(),
+                },
+                beforeSend: function () {
+                    $('#ajax-popup').modal({
+                        backdrop: 'static',
+                        keyboard: false,
+                        show: true,
+                    });
+                },
+                complete: function () {
+                    $('#ajax-popup').modal("hide");
+                },
+                success: function (data) {
+                    if (data.success) {
+                        window.location = '/Home/Download'
+                        
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    
+                }
+            });
+        }
+
+
+
+        $(document).ready(function () {
+
+        });
+
+
+
+    </script>
+
+}
+

@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\SiparisApp",
+    "\\SiparisApp\\App_Data",
+    "\\SiparisApp\\Controllers",
+    "\\SiparisApp\\CustomModels",
+    "\\SiparisApp\\Views",
+    "\\SiparisApp\\Views\\Security",
+    "\\SiparisApp\\Views\\Shared"
+  ],
+  "SelectedNode": "\\SiparisApp\\CustomModels\\UserViewModel.cs",
+  "PreviewInSolutionExplorer": false
+}

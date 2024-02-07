@@ -1,0 +1,149 @@
+﻿@using SiparisApp.CustomModels
+@model UserViewModel.FormModel
+@{
+    ViewBag.Title = "Save";
+}
+
+@section Navbar{
+    @{
+        Html.RenderPartial("_Navbar");
+    }
+
+}
+
+@section Sidebar{
+    @{
+        Html.RenderPartial("_SideBar");
+    }
+
+}
+
+@section Footer{
+    @{
+        Html.RenderPartial("_Footer");
+    }
+
+}
+
+<div class="container-fluid">
+
+    @using (Html.BeginForm("Save", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(x => x.ID)
+        @Html.HiddenFor(x => x.AKTIF)
+
+
+
+        <div class="row bg-title">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                <h4 class="page-title">Kullanıcı Kaydet</h4>
+            </div>
+            <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                <div class="jq-toast-wrap top-right">
+                    <div class="jq-toast-single jq-has-icon jq-icon-warning" style="text-align: left; display:@(TempData["Hata"] == null ? "none" : "block");">
+                        <span class="jq-toast-loader jq-toast-loaded" style="-webkit-transition: width 3.1s ease-in;-o-transition: width 3.1s ease-in;transition: width 3.1s ease-in;background-color: #ff6849;">
+                        </span><span class="close-jq-toast-single">
+                            ×
+                        </span><h2 class="jq-toast-heading">Mesajınız Var!</h2>@TempData["Hata"]
+                    </div>
+                </div>
+
+            </div>
+            </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="white-box">
+
+
+
+
+
+
+                    <div class="mb-3 row" style="margin-bottom:20px;">
+                        <div class="col-md-6">
+                            <label style="font-size: small; font-weight: bold;">AD</label><br />
+                            @Html.EditorFor(x => x.AD, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <div class="col-md-6">
+                            <label style="font-size: small; font-weight: bold;">SOYAD</label><br />
+                            @Html.EditorFor(x => x.SOYAD, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>   
+                    <div class="mb-3 row" style="margin-bottom:20px;">
+                        <div class="col-md-6">
+                            <label style="font-size: small; font-weight: bold;">KULLANICI ADI</label><br />
+                            @Html.EditorFor(x => x.KULLANICI_ADI, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <div class="col-md-6">
+                            <label style="font-size: small; font-weight: bold;">ŞİFRE</label><br />
+                            @Html.EditorFor(x => x.SIFRE, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>                  
+                    <div class="mb-3 row" style="margin-bottom:20px;">
+                        <div class="col-md-6">
+                            <label style="font-size: small; font-weight: bold;">BİRİM</label><br />
+                            @Html.DropDownListFor(x => x.BIRIM, Model.BIRIM_LIST, new { @class = "js-example-basic-single form-control" })
+                        </div>
+                        <div class="col-md-6">
+                            <label style="font-size: small; font-weight: bold;">SEVİYE</label><br />
+                            @Html.DropDownListFor(x => x.SEVIYE, Model.SEVIYE_LIST, new { @class = "js-example-basic-single form-control" })
+                        </div>
+                        </div>
+                    <div class="mb-3 row" style="margin-bottom:20px;">
+                        <div class="col-md-12" style="text-align:right">
+                            <button type="submit" class="fcbtn btn btn-success btn-outline btn-1b" id="btnKaydet"><i class="fa fa-check"> KAYDET</i></button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+  
+    }
+
+
+</div>
+
+@section Head{
+    <style>
+        .field-validation-error {
+            color: #e80c4d;
+            font-weight: bold;
+            font-size: 7pt;
+        }
+
+        .input-validation-error {
+            border:  #ff0000;
+            background-color: #ffeeee;
+        }
+
+            .input-validation-error ~ .select2 .select2-selection {
+                border: red;
+            }
+    </style>
+}
+
+@section Scripts {
+
+    <script>
+
+        //$('#btnKaydet').click(function () {
+        //    $(this).prop("disabled", true);
+        //    if (!$('form').valid()) {
+        //        $(this).prop("disabled", false);
+        //        return false;
+        //    }
+        //    $('form').submit();
+        //});
+
+        $(document).ready(function () {
+
+        });
+
+    </script>
+
+}

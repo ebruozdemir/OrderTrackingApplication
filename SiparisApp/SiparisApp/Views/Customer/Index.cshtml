@@ -1,0 +1,158 @@
+﻿@using SiparisApp.CustomModels
+@model CustomerViewModel.AraModel
+@{
+    ViewBag.Title = "Index";
+}
+
+@section Navbar{
+    @{
+        Html.RenderPartial("_Navbar");
+    }
+
+}
+
+@section Sidebar{
+    @{
+        Html.RenderPartial("_SideBar");
+    }
+
+}
+
+@section Footer{
+    @{
+        Html.RenderPartial("_Footer");
+    }
+
+}
+
+<div class="container-fluid">
+
+    @using (Ajax.BeginForm("Index", "Customer", FormMethod.Post, new AjaxOptions { OnSuccess = "AramaFiltrele" }))
+    {
+
+        <div class="row bg-title">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                <h4 class="page-title">Müşteri Listesi</h4>
+            </div>
+            <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+
+              <div class="jq-toast-wrap top-right">
+                  <div class="jq-toast-single jq-has-icon jq-icon-success" style="text-align: left; display:@(TempData["Mesaj"] == null ? "none" : "block");">
+                      <span class="jq-toast-loader jq-toast-loaded" style="-webkit-transition: width 3.1s ease-in;-o-transition: width 3.1s ease-in;transition: width 3.1s ease-in;background-color: #ff6849;">
+                      </span><span class="close-jq-toast-single">
+                          ×
+                      </span><h2 class="jq-toast-heading">Mesajınız Var!</h2>@TempData["Mesaj"]
+                  </div>
+
+                 
+              </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="white-box">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label style="font-size: small; font-weight: bold;">CARİ ADI</label><br />
+                            @Html.DropDownListFor(x => x.ID, Model.CARI_LIST, new { @class = "js-example-basic-single form-control" })
+                        </div>
+                    </div>
+
+                    <br />
+
+                    <div class="row">
+                        <div class="col-md-12" style="text-align:right">
+                            <button type="submit" class="fcbtn btn btn-info btn-outline btn-1b" id="btnListele"><i class="fa fa-filter"> Listele</i></button>
+                            <a class="fcbtn btn btn-primary btn-outline btn-1b" href="@Url.Action("Save", "Customer")/0"> <i class="fa fa-plus"> Yeni</i></a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="white-box">
+                <div id="div-liste">
+                    @Html.Partial("~/Views/Customer/_List.cshtml", Model)
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+@section Scripts {
+
+    <script>
+
+        //$('#btnListele').click(function () {
+        //    $(this).prop("disabled", true);
+        //    if (!$('form').valid()) {
+        //        $(this).prop("disabled", false);
+        //        return false;
+        //    }
+        //    $('form').submit();
+        //});
+
+        function AramaFiltrele(Sonuclar) {
+            $("#div-liste").html(Sonuclar);
+        }
+
+
+        function Sil(id) {
+            swal({
+                title: "Emin misin?",
+                text: "Seçilen kaydı sildikten sonra geri getiremezsiniz",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Evet",
+                cancelButtonText: "Hayır",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    //swal("Uyarı!", "Silindi.", "success");
+
+                    $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("Delete", "Customer")/' + id,
+                    success: function (data) {
+                        if (data.success) {
+
+                            swal("Uyarı!", data.message, "success");
+
+                            //MesajBasarili(data.message);
+
+                            window.setInterval(function () {
+                                location.reload();
+                            }, 2000);
+
+
+                        }
+                    }
+                    });
+
+                } else {
+                    swal("Uyarı", "İptal edildi.", "error");
+                }
+            });
+        }
+
+
+
+        $(document).ready(function () {
+
+        });
+
+
+    </script>
+
+}

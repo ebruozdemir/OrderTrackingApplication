@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SqlDbModelStoreContainer" CdmEntityContainer="SqlDbEntities">
+    <EntitySetMapping Name="CARI">
+      <EntityTypeMapping TypeName="SqlDbModel.CARI">
+        <MappingFragment StoreEntitySet="CARI">
+          <ScalarProperty Name="AKTIF" ColumnName="AKTIF" />
+          <ScalarProperty Name="GUNCELLENME_TARIHI" ColumnName="GUNCELLENME_TARIHI" />
+          <ScalarProperty Name="GUNCELLEYEN_ID" ColumnName="GUNCELLEYEN_ID" />
+          <ScalarProperty Name="EKLENME_TARIHI" ColumnName="EKLENME_TARIHI" />
+          <ScalarProperty Name="EKLEYEN_ID" ColumnName="EKLEYEN_ID" />
+          <ScalarProperty Name="ULKE" ColumnName="ULKE" />
+          <ScalarProperty Name="CARI_ADI" ColumnName="CARI_ADI" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KULLANICI">
+      <EntityTypeMapping TypeName="SqlDbModel.KULLANICI">
+        <MappingFragment StoreEntitySet="KULLANICI">
+          <ScalarProperty Name="AKTIF" ColumnName="AKTIF" />
+          <ScalarProperty Name="SEVIYE" ColumnName="SEVIYE" />
+          <ScalarProperty Name="BIRIM" ColumnName="BIRIM" />
+          <ScalarProperty Name="SOYAD" ColumnName="SOYAD" />
+          <ScalarProperty Name="AD" ColumnName="AD" />
+          <ScalarProperty Name="SIFRE" ColumnName="SIFRE" />
+          <ScalarProperty Name="KULLANICI_ADI" ColumnName="KULLANICI_ADI" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SIPARIS">
+      <EntityTypeMapping TypeName="SqlDbModel.SIPARIS">
+        <MappingFragment StoreEntitySet="SIPARIS">
+          <ScalarProperty Name="AKTIF" ColumnName="AKTIF" />
+          <ScalarProperty Name="KULLANICI_ID" ColumnName="KULLANICI_ID" />
+          <ScalarProperty Name="SIPARIS_TARIHI" ColumnName="SIPARIS_TARIHI" />
+          <ScalarProperty Name="SIPARIS_ADETI" ColumnName="SIPARIS_ADETI" />
+          <ScalarProperty Name="CARI_ID" ColumnName="CARI_ID" />
+          <ScalarProperty Name="GUC" ColumnName="GUC" />
+          <ScalarProperty Name="SERI_NO" ColumnName="SERI_NO" />
+          <ScalarProperty Name="PROJE_NO" ColumnName="PROJE_NO" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
