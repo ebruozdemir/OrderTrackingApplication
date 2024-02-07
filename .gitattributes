@@ -1,6 +1,14 @@
-*.cs linguist-language=C#
+* text=auto eol=lf
+
+*.blade.php diff=html
 *.css linguist-detectable=false
-*.less linguist-detectable=false
-*.js linguist-detectable=false
-*.scss linguist-detectable=false
-*.html linguist-vendored
+*.html linguist-detectable=false
+*.md diff=markdown
+*.php diff=php
+*.js linguist-detectable=true
+
+*.cs linguist-language=C#
+
+/.github export-ignore
+CHANGELOG.md export-ignore
+.styleci.yml export-ignore
